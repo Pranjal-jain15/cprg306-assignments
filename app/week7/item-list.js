@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Item from './Item'; // Assuming the Item component is in a file named Item.js
+import Item from './item'; // Assuming the Item component is in a file named Item.js
 import './styles.css';
 
 function ItemList({ items, onItemSelect }) {

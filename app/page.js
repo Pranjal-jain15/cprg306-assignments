@@ -11,6 +11,7 @@ export default function week2() {
       <Link href="./week4">Week4</Link> <br></br>
       <Link href="./week5">Week5</Link> <br></br>
       <Link href="./week6">Week6</Link> <br></br>
+      <Link href="./week7">Week7</Link> <br></br>
     </main>
    
   )
