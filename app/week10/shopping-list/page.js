@@ -1,17 +1,29 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import itemsData from './items.json';
 import ItemList from './item-list';
 import NewItem from './new-item';
 import MealIdeas from './meal-ideas';
 import { useUserAuth } from 'path/to/useUserAuth'; // Import the useUserAuth hook from the correct path
+import { getItems, addItem } from './shopping-list-service';
 
 export default function Page() {
-  const [items, setItems] = useState(itemsData);
+  const [items, setItems] = useState([]); // State for shopping list items
   const [selectedItemName, setSelectedItemName] = useState('');
   const user = useUserAuth(); // Assuming useUserAuth returns the user object or null
 
+  // Async function to load items for the current user
+  const loadItems = async () => {
+    try {
+      if (user) {
+        const shoppingList = await getItems(user.uid); // Fetch items for the current user using user's uid
+        setItems(shoppingList); // Update items state with fetched shopping list
+      }
+    } catch (error) {
+      console.error('Error loading items:', error);
+      // Handle error or set state accordingly
+    }
+  };
   useEffect(() => {
     if (user === null) {
       // Redirect the user to the landing page if not logged in
